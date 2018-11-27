@@ -49,15 +49,12 @@ class SimplePIController:
 
 
 controller = SimplePIController(0.1, 0.002)
-set_speed = 20
+set_speed = 25
 controller.set_desired(set_speed)
 
 def process_image(image):
-    
-    cutted_image = image[55:135, :, :]
-    #processed_image = cv2.resize(cutted_image, (320, 160))
-    processed_image = cutted_image
-    processed_image = processed_image.astype(np.float32)
+    Cut_image = image[55:135, :, :]
+    processed_image = Cut_image.astype(np.float32)
     #print(processed_image.shape)
     return processed_image
 
