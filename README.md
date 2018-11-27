@@ -8,10 +8,6 @@ alt="This My test video" width="960" height="540" border="10" /></a>
 
 ## In this project, I used my deep neural network and convolutional neural network to clone driving behavior. I use Keras to train, validate and test the model. This model will output a steering angle to an autonomous vehicle.
 
-### Overview
----
-
-When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
 
 [//]: # (Image References)
 
@@ -45,6 +41,7 @@ My project includes the following files:
 * [drive.py](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/drive.py)  for driving the car in autonomous mode
 * [model.h5](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/model.h5)  containing a trained convolution neural network 
 * [writeup_report.md](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/writeup_report.md) summarizing the results
+* [video.mp4](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/video.mp4) Simulated driving view movie
 * (Option) [Dataset](https://drive.google.com/open?id=1kQB2dtGGOKop65lwvEiWxxfHTUBg3CeV) Data set used to train the model
 * (Option) [Environment](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/environment.yml) If you want to train in the same environment, here is my Conda environment profile.
 #### 2. Submission includes functional code
@@ -159,6 +156,30 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 Then I recorded that the vehicle recovered from the left and right sides of the road to the center so that the vehicle learned how to distinguish the off-center lane.
 I cropped the various input images and randomly adjusted the light (I switched to the HSV channel and adjusted the V Channel), then made a large amount of analog data by flipping it according to the adjusted pattern.
+
+I have done random brightness adjustment and cropping when I entered the data.
+```python
+def process_image(image):
+    #Convert to HSV to adjust brightness
+    HSV_image = cv2.cvtColor(image,cv2.COLOR_RGB2HSV)
+
+    #Add a constant so that it prevents the image from being completely dark
+    random_bright = .25+np.random.uniform()
+
+    #Apply the brightness reduction to the V channel
+    HSV_image[:,:,2] = HSV_image[:,:,2]*random_bright
+
+    #Convert to RBG again
+    HSV_image = cv2.cvtColor(HSV_image,cv2.COLOR_HSV2RGB)
+
+    #Cut image
+    Cut_image = HSV_image[55:135, :, :]
+
+    #Convert to np.array
+    processed_image = Cut_image.astype(np.float32)
+    return processed_image
+```
+But in drive.py I only do the cropping to avoid random light affecting the model's prediction.
 
 ![alt text][image3]
 ![alt text][image4]
