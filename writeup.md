@@ -45,6 +45,7 @@ My project includes the following files:
 * [drive.py](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/drive.py)  for driving the car in autonomous mode
 * [model.h5](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/model.h5)  containing a trained convolution neural network 
 * [writeup_report.md](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/writeup_report.md) summarizing the results
+* [video.mp4](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/video.mp4) Simulated driving view movie
 * (Option) [Dataset](https://drive.google.com/open?id=1kQB2dtGGOKop65lwvEiWxxfHTUBg3CeV) Data set used to train the model
 * (Option) [Environment](https://github.com/ChenKuanSun/CarND-Behavioral-Cloning-P3/blob/master/environment.yml) If you want to train in the same environment, here is my Conda environment profile.
 #### 2. Submission includes functional code
